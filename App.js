@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import * as Font from 'expo-font';
 import HomePage from './pages/HomePage';
 import { NativeRouter, Route } from "react-router-native";
-import Prueba from './pages/prueba';
+import Login from './pages/Login';
+import AppLoading from "expo-app-loading";
 
 export default function App() {
-  const [loaded, setLoaded] = useState(false)
 
-  useEffect(async () => {
+  const fetchFonts = async () => {
     await Font.loadAsync({
       MontserratBlack: require('./assets/fonts/Montserrat-Black.ttf'),
       MontserratBold: require('./assets/fonts/Montserrat-Bold.ttf'),
@@ -25,16 +25,24 @@ export default function App() {
       MontserratThin: require('./assets/fonts/Montserrat-Thin.ttf'),
       MontserratThinItalic: require('./assets/fonts/Montserrat-ThinItalic.ttf')
     });
-    return setLoaded(!loaded)
-  }, [])
+  }
 
+  const [fontLoaded, setFontLoaded] = useState(false);
 
-  return (
-    loaded ? (
+  if (!fontLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setFontLoaded(true)}
+        onError={() => console.log("error")}
+      />
+    );
+  } else {
+    return (
       <NativeRouter>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/hola" component={Prueba} />
+        <Route exact path="/login" component={Login} />
       </NativeRouter>
-    ) : null
-  );
+    );
+  }
 }

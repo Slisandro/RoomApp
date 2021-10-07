@@ -4,7 +4,7 @@ import {
   View,
   Text,
   FlatList,
-  StatusBar,
+  SafeAreaView,
   ScrollView,
   Dimensions,
   Image
@@ -80,7 +80,7 @@ export default function HomePage() {
         <Welcome name={'Lisandro'} />
         <SearchBar />
         <CarouselComponent />
-        <Text style={styles.rooms}>{'Nuestras rooms más visitas'}</Text>
+        <Text style={styles.title}>{'Nuestras rooms más visitas'}</Text>
         <View style={styles.containerCards}>
           <FlatList
             numColumns={2}
@@ -93,9 +93,8 @@ export default function HomePage() {
       </ScrollView>
       <View style={styles.footer}>
         <Link
-          to="/hola"
+          to="/login"
           underlayColor="#f0f4f7"
-          // style={styles.navItem}
         >
           <Ionicons name="md-home-outline" size={20} color="black" />
         </Link>
@@ -125,18 +124,26 @@ const styles = StyleSheet.create({
     marginRight: '5%',
     marginBottom: 100
   },
-  rooms: {
-    fontSize: 25,
-    textAlign: 'left',
-    width: '100%',
+  // rooms: {
+  //   fontSize: 25,
+  //   textAlign: 'left',
+  //   width: '100%',
+  //   marginTop: 20,
+  //   marginLeft: '2.5%',
+  //   fontFamily: 'Montserrat-ExtraBold',
+  //   shadowColor: '#000',
+  //   shadowOffset: { width: -2, height: 2 },
+  //   shadowOpacity: .7,
+  //   shadowRadius: 1,
+  //   elevation: 10,
+  // },
+  title: {
+    fontSize: 20,
+    color: '#000000',
+    opacity: 0.75,
     marginTop: 20,
-    marginLeft: '2.5%',
-    fontFamily: 'Montserrat-ExtraBold',
-    shadowColor: '#000',
-    shadowOffset: { width: -2, height: 2 },
-    shadowOpacity: .7,
-    shadowRadius: 1,
-    elevation: 10,
+    marginLeft: 20,
+    fontFamily: "MontserratSemiBold"
   },
   footer: {
     width: '100%',
